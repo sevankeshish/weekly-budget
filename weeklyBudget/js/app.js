@@ -8,8 +8,10 @@ class Budget {
 class HTML {
     insertBudget(amount) {
         // console.log(amount);
-        console.log(budgetTotal);
-        console.log(budgetLeft);
+        // console.log(budgetTotal);
+        // console.log(budgetLeft);
+        budgetTotal.innerHTML = amount
+        budgetLeft.innerHTML = amount
     }
 }
 
