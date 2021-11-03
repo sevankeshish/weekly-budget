@@ -5,9 +5,22 @@ class Budget {
     }
 }
 
+class HTML {
+    insertBudget(amount) {
+        // console.log(amount);
+        console.log(budgetTotal);
+        console.log(budgetLeft);
+    }
+}
+
 //variables
 let userbudget;
 let budget;
+const html = new HTML()
+
+let budgetTotal = document.querySelector("span#total")
+let budgetLeft = document.querySelector("span#left")
+
 
 //eventlisteners
 eventListeners()
@@ -20,6 +33,7 @@ function eventListeners() {
         } else {
             budget = new Budget(userbudget)
             console.log(budget);
+            html.insertBudget(budget.budget)
 
         }
     })
