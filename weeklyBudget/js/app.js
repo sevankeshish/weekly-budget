@@ -18,12 +18,13 @@ class HTML {
 //variables
 let userbudget;
 let budget;
-const html = new HTML()
 
 let budgetTotal = document.querySelector("span#total")
 let budgetLeft = document.querySelector("span#left")
 
+const addExpenseForm = document.querySelector("#add-expense")
 
+const html = new HTML()
 //eventlisteners
 eventListeners()
 
@@ -34,9 +35,22 @@ function eventListeners() {
             window.location.reload()
         } else {
             budget = new Budget(userbudget)
-            console.log(budget);
+            // console.log(budget);
             html.insertBudget(budget.budget)
 
         }
     })
+
+    addExpenseForm.addEventListener("submit" , function(e){
+        e.preventDefault()
+
+        const expense = document.querySelector("#expense").value
+        const amount = document.querySelector("#amount").value
+
+        console.log(expense);
+        console.log(amount);
+
+    
+    })
 }
+
