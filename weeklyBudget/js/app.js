@@ -13,6 +13,20 @@ class HTML {
         budgetTotal.innerHTML = amount
         budgetLeft.innerHTML = amount
     }
+    printMessage(message , className){
+        const div = document.createElement("div")
+        div.classList.add("alert" , "text-center" , className)
+        // console.log(div);  
+        div.appendChild(document.createTextNode(message))
+        const primary= document.querySelector(".primary")
+        primary.insertBefore(div, addExpenseForm)
+
+        setTimeout(() => {
+            document.querySelector(".alert").remove()
+        }, 3000);
+
+        addExpenseForm.reset()
+     }
 }
 
 //variables
@@ -47,9 +61,13 @@ function eventListeners() {
         const expense = document.querySelector("#expense").value
         const amount = document.querySelector("#amount").value
 
-        console.log(expense);
-        console.log(amount);
-
+        // console.log(expense);
+        // console.log(amount);
+        if(expense === "" || amount === ""){
+            html.printMessage("همه موارد الزامی می باشند " , "alert-danger")
+        }else {
+            html.printMessage("همه موارد درست است " , "alert-success")
+        }
     
     })
 }
