@@ -13,12 +13,12 @@ class HTML {
         budgetTotal.innerHTML = amount
         budgetLeft.innerHTML = amount
     }
-    printMessage(message , className){
+    printMessage(message, className) {
         const div = document.createElement("div")
-        div.classList.add("alert" , "text-center" , className)
+        div.classList.add("alert", "text-center", className)
         // console.log(div);  
         div.appendChild(document.createTextNode(message))
-        const primary= document.querySelector(".primary")
+        const primary = document.querySelector(".primary")
         primary.insertBefore(div, addExpenseForm)
 
         setTimeout(() => {
@@ -26,7 +26,19 @@ class HTML {
         }, 3000);
 
         addExpenseForm.reset()
-     }
+    }
+
+    insertExpense(name, amount) {
+        const expenses = document.querySelector("#expenses ul")
+        let li = document.createElement("li")
+
+        li.classList = "list-group-item d-flex justify-content-between align-items-center"
+        li.innerHTML = `
+        ${name}
+        <span class = "badge badge-primary badge-pill">${amount}</span>
+        `
+        expenses.appendChild(li)
+    }
 }
 
 //variables
@@ -45,7 +57,7 @@ eventListeners()
 function eventListeners() {
     document.addEventListener("DOMContentLoaded", function () {
         userbudget = prompt("لطفا بودجه هفتگی خود را وارد کنید")
-        if (userbudget === null || userbudget === "" || userbudget === "0") {
+        if (isNaN(userbudget) || userbudget === "" || userbudget === "0" || userbudget === null) {
             window.location.reload()
         } else {
             budget = new Budget(userbudget)
@@ -55,7 +67,7 @@ function eventListeners() {
         }
     })
 
-    addExpenseForm.addEventListener("submit" , function(e){
+    addExpenseForm.addEventListener("submit", function (e) {
         e.preventDefault()
 
         const expense = document.querySelector("#expense").value
@@ -63,12 +75,12 @@ function eventListeners() {
 
         // console.log(expense);
         // console.log(amount);
-        if(expense === "" || amount === ""){
-            html.printMessage("همه موارد الزامی می باشند " , "alert-danger")
-        }else {
-            html.printMessage("همه موارد درست است " , "alert-success")
+        if (expense === "" || amount === "") {
+            html.printMessage("همه موارد الزامی می باشند ", "alert-danger")
+        } else {
+            // html.printMessage("همه موارد درست است " , "alert-success")
+            html.insertExpense(expense, amount)
         }
-    
+
     })
 }
-
