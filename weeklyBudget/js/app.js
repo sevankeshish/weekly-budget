@@ -2,6 +2,11 @@
 class Budget {
     constructor(budget) {
         this.budget = budget
+        this.budgetLeft =this.budget
+    }
+    subtractFromBudget(amount){
+        return this.budgetLeft -= amount
+
     }
 }
 
@@ -38,6 +43,10 @@ class HTML {
         <span class = "badge badge-primary badge-pill">${amount}</span>
         `
         expenses.appendChild(li)
+    }
+    trackBudget (amount){
+        const budgetLeftToman = budget.subtractFromBudget(amount)
+        budgetLeft.innerHTML = `${budgetLeftToman}`
     }
 }
 
@@ -80,6 +89,7 @@ function eventListeners() {
         } else {
             // html.printMessage("همه موارد درست است " , "alert-success")
             html.insertExpense(expense, amount)
+            html.trackBudget(amount)
         }
 
     })
