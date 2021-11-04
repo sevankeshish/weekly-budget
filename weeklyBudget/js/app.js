@@ -2,9 +2,9 @@
 class Budget {
     constructor(budget) {
         this.budget = budget
-        this.budgetLeft =this.budget
+        this.budgetLeft = this.budget
     }
-    subtractFromBudget(amount){
+    subtractFromBudget(amount) {
         return this.budgetLeft -= amount
 
     }
@@ -44,9 +44,24 @@ class HTML {
         `
         expenses.appendChild(li)
     }
-    trackBudget (amount){
+    trackBudget(amount) {
+
         const budgetLeftToman = budget.subtractFromBudget(amount)
         budgetLeft.innerHTML = `${budgetLeftToman}`
+
+        if (isNaN(amount)) {
+        
+            console.log(alert(" لیست شما پاک شد، از اول شروع کنید"));
+            expenses.remove()
+         
+
+        } else if ((budget.budget / 4) > budgetLeftToman) {
+            budgetLeft.parentElement.parentElement.classList.remove("alert-success", "alert-warning")
+            budgetLeft.parentElement.parentElement.classList.add("alert-danger")
+        } else if ((budget.budget / 2) > budgetLeftToman) {
+            budgetLeft.parentElement.parentElement.classList.remove("alert-success")
+            budgetLeft.parentElement.parentElement.classList.add("alert-warning")
+        }
     }
 }
 
