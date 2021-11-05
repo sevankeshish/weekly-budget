@@ -50,10 +50,10 @@ class HTML {
         budgetLeft.innerHTML = `${budgetLeftToman}`
 
         if (isNaN(amount)) {
-        
+
             console.log(alert(" لیست شما پاک شد، از اول شروع کنید"));
             expenses.remove()
-         
+
 
         } else if ((budget.budget / 4) > budgetLeftToman) {
             budgetLeft.parentElement.parentElement.classList.remove("alert-success", "alert-warning")
@@ -101,6 +101,10 @@ function eventListeners() {
         // console.log(amount);
         if (expense === "" || amount === "") {
             html.printMessage("همه موارد الزامی می باشند ", "alert-danger")
+        } else if (!isNaN(expense)) {
+            html.printMessage("لطفا متن وارد کنید", "alert-danger")
+        } else if (isNaN(amount)) {
+            html.printMessage("لطفا عدد وارد کنید", "alert-danger")
         } else {
             // html.printMessage("همه موارد درست است " , "alert-success")
             html.insertExpense(expense, amount)
